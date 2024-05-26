@@ -43,10 +43,10 @@ namespace lslidar_driver {
                                                                                        point_cloud_xyzi_bak_(new pcl::PointCloud<pcl::PointXYZI>),       
                                                                                        scan_msg(new sensor_msgs::LaserScan),
                                                                                        scan_msg_bak(new sensor_msgs::LaserScan){
-        ROS_INFO("*********** CX4.0 ROS driver version: %s ***********", lslidar_cx_driver_VERSION);
+        ROS_INFO("*********** CX4.0 ROS driver version: %s ***********", lslidar_c16_driver_VERSION);
     }
 
-    bool LslidarDriver::checkPacketValidity(lslidar_cx_driver::LslidarPacketPtr &packet) {
+    bool LslidarDriver::checkPacketValidity(lslidar_c16_driver::LslidarPacketPtr &packet) {
         for (size_t blk_idx = 0; blk_idx < BLOCKS_PER_PACKET; ++blk_idx) {
             if (packet->data[blk_idx * 100] != 0xff && packet->data[blk_idx * 100 + 1] != 0xee) {
                 return false;
@@ -198,7 +198,7 @@ namespace lslidar_driver {
 
     void LslidarDriver::difopPoll() {
         // reading and publishing scans as fast as possible.
-        lslidar_cx_driver::LslidarPacketPtr difop_packet_ptr(new lslidar_cx_driver::LslidarPacket);
+        lslidar_c16_driver::LslidarPacketPtr difop_packet_ptr(new lslidar_c16_driver::LslidarPacket);
         static bool is_print_working_time = true;
         while (ros::ok()) {
             // keep reading
@@ -425,9 +425,9 @@ namespace lslidar_driver {
         return true;
     }
 
-    bool LslidarDriver::powerOn(lslidar_cx_driver::lslidar_control::Request &req,
-                                lslidar_cx_driver::lslidar_control::Response &res) {
-        lslidar_cx_driver::LslidarPacketPtr packet0(new lslidar_cx_driver::LslidarPacket);
+    bool LslidarDriver::powerOn(lslidar_c16_driver::lslidar_control::Request &req,
+                                lslidar_c16_driver::lslidar_control::Response &res) {
+        lslidar_c16_driver::LslidarPacketPtr packet0(new lslidar_c16_driver::LslidarPacket);
         packet0->data[0] = 0x00;
         packet0->data[1] = 0x00;
         int rc_msop = -1;
@@ -492,8 +492,8 @@ namespace lslidar_driver {
         return true;
     }
 
-    bool LslidarDriver::timeService(lslidar_cx_driver::time_service::Request &req,
-                                    lslidar_cx_driver::time_service::Response &res) {
+    bool LslidarDriver::timeService(lslidar_c16_driver::time_service::Request &req,
+                                    lslidar_c16_driver::time_service::Response &res) {
         ROS_INFO("Start to modify lidar time service mode");
         if (!is_get_difop_) {
             res.result = 0;
@@ -546,8 +546,8 @@ namespace lslidar_driver {
         return true;
     }
 
-    bool LslidarDriver::motorControl(lslidar_cx_driver::motor_control::Request &req,
-                                     lslidar_cx_driver::motor_control::Response &res) {
+    bool LslidarDriver::motorControl(lslidar_c16_driver::motor_control::Request &req,
+                                     lslidar_c16_driver::motor_control::Response &res) {
         if (!is_get_difop_) {
             res.result = 0;
             ROS_ERROR("Can not get dev packet! Set failed!");
@@ -584,8 +584,8 @@ namespace lslidar_driver {
         return true;
     }
 
-    bool LslidarDriver::removeControl(lslidar_cx_driver::remove_control::Request &req,
-                                      lslidar_cx_driver::remove_control::Response &res) {
+    bool LslidarDriver::removeControl(lslidar_c16_driver::remove_control::Request &req,
+                                      lslidar_c16_driver::remove_control::Response &res) {
         if (3 == fpga_type) {
             res.result = 0;
             ROS_WARN("This lidar does not have this function!");
@@ -627,8 +627,8 @@ namespace lslidar_driver {
         return true;
     }
 
-    bool LslidarDriver::motorSpeed(lslidar_cx_driver::motor_speed::Request &req,
-                                   lslidar_cx_driver::motor_speed::Response &res) {
+    bool LslidarDriver::motorSpeed(lslidar_c16_driver::motor_speed::Request &req,
+                                   lslidar_c16_driver::motor_speed::Response &res) {
         if (!is_get_difop_) {
             res.result = 0;
             ROS_ERROR("Can not get dev packet! Set failed!");
@@ -665,8 +665,8 @@ namespace lslidar_driver {
         return true;
     }
 
-    bool LslidarDriver::setDataPort(lslidar_cx_driver::data_port::Request &req,
-                                    lslidar_cx_driver::data_port::Response &res) {
+    bool LslidarDriver::setDataPort(lslidar_c16_driver::data_port::Request &req,
+                                    lslidar_c16_driver::data_port::Response &res) {
         if (!is_get_difop_) {
             res.result = 0;
             ROS_ERROR("Can not get dev packet! Set failed!");
@@ -697,8 +697,8 @@ namespace lslidar_driver {
         return true;
     }
 
-    bool LslidarDriver::setDevPort(lslidar_cx_driver::dev_port::Request &req,
-                                   lslidar_cx_driver::dev_port::Response &res) {
+    bool LslidarDriver::setDevPort(lslidar_c16_driver::dev_port::Request &req,
+                                   lslidar_c16_driver::dev_port::Response &res) {
         if (!is_get_difop_) {
             res.result = 0;
             ROS_ERROR("Can not get dev packet! Set failed!");
@@ -730,8 +730,8 @@ namespace lslidar_driver {
         return true;
     }
 
-    bool LslidarDriver::setDataIp(lslidar_cx_driver::data_ip::Request &req,
-                                  lslidar_cx_driver::data_ip::Response &res) {
+    bool LslidarDriver::setDataIp(lslidar_c16_driver::data_ip::Request &req,
+                                  lslidar_c16_driver::data_ip::Response &res) {
         std::regex ipv4(
                 "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b");
         if (!regex_match(req.data_ip, ipv4)) {
@@ -778,8 +778,8 @@ namespace lslidar_driver {
         return true;
     }
 
-    bool LslidarDriver::setDestinationIp(lslidar_cx_driver::destination_ip::Request &req,
-                                         lslidar_cx_driver::destination_ip::Response &res) {
+    bool LslidarDriver::setDestinationIp(lslidar_c16_driver::destination_ip::Request &req,
+                                         lslidar_c16_driver::destination_ip::Response &res) {
         std::regex ipv4(
                 "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b");
         if (!regex_match(req.destination_ip, ipv4)) {
@@ -825,7 +825,7 @@ namespace lslidar_driver {
         return true;
     }
 
-    void LslidarDriver::decodePacket(lslidar_cx_driver::LslidarPacketPtr &packet) {
+    void LslidarDriver::decodePacket(lslidar_c16_driver::LslidarPacketPtr &packet) {
         //couputer azimuth angle for each firing
         for (size_t b_idx = 0; b_idx < BLOCKS_PER_PACKET; ++b_idx) {
             firings.firing_azimuth[b_idx] = (packet->data[b_idx * 100 + 2] + (packet->data[b_idx * 100 + 3] << 8)) % 36000; //* 0.01 * DEG_TO_RAD;
@@ -873,7 +873,7 @@ namespace lslidar_driver {
 
     bool LslidarDriver::poll() {
         // Allocate a new shared pointer for zero-copy sharing with other nodelets.
-        lslidar_cx_driver::LslidarPacketPtr packet(new lslidar_cx_driver::LslidarPacket());
+        lslidar_c16_driver::LslidarPacketPtr packet(new lslidar_c16_driver::LslidarPacket());
         // Since the rslidar delivers data at a very high rate, keep
         // reading and publishing scans as fast as possible.
         while (true) {
@@ -1345,7 +1345,7 @@ namespace lslidar_driver {
     }
 
     bool LslidarDriver::determineLidarType(){
-        lslidar_cx_driver::LslidarPacketPtr pkt(new lslidar_cx_driver::LslidarPacket());
+        lslidar_c16_driver::LslidarPacketPtr pkt(new lslidar_c16_driver::LslidarPacket());
         // Since the rslidar delivers data at a very high rate, keep
         // reading and publishing scans as fast as possible.
         while (true) {

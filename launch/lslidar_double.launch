@@ -10,8 +10,8 @@
   <arg name="packet_rate1" default="1695.0"/>
   <arg name="packet_rate2" default="1695.0"/>
 
-  <node pkg="lslidar_cx_driver" type="lslidar_cx_driver_node" name="lslidar_driver_node" output="screen" ns="lidar_1">
-    <!--param name="pcap" value="$(find lslidar_cx_driver)/pcap/xxx.pcap" /-->
+  <node pkg="lslidar_c16_driver" type="lslidar_c16_driver_node" name="lslidar_driver_node" output="screen" ns="lidar_1">
+    <!--param name="pcap" value="$(find lslidar_c16_driver)/pcap/xxx.pcap" /-->
     <param name="use_time_service" value="$(arg use_time_service)"/>
     <param name="packet_rate" value="$(arg packet_rate1)"/>
     <param name="device_ip" value="$(arg device_ip1)" />
@@ -33,8 +33,8 @@
     <param name="coordinate_opt" value="false"/>    <!-- 点云0度角对应方向  true: x轴正方向 -->
   </node>
 
-  <node pkg="lslidar_cx_driver" type="lslidar_cx_driver_node" name="lslidar_driver_node" output="screen" ns="lidar_2">
-    <!--param name="pcap" value="$(find lslidar_cx_driver)/pcap/xxx.pcap" /-->
+  <node pkg="lslidar_c16_driver" type="lslidar_c16_driver_node" name="lslidar_driver_node" output="screen" ns="lidar_2">
+    <!--param name="pcap" value="$(find lslidar_c16_driver)/pcap/xxx.pcap" /-->
     <param name="use_time_service" value="$(arg use_time_service)"/>
     <param name="packet_rate" value="$(arg packet_rate2)"/>
     <param name="device_ip" value="$(arg device_ip2)" />

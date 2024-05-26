@@ -55,14 +55,14 @@ run with single lidar:
 
 ~~~bash
 
-roslaunch lslidar_cx_driver lslidar_cx.launch
+roslaunch lslidar_c16_driver lslidar_cx.launch
 
 ~~~
 
 run with double lidar:
 
 ~~~bash
-roslaunch lslidar_cx_driver lslidar_double.launch
+roslaunch lslidar_c16_driver lslidar_double.launch
 ~~~
 
 
@@ -81,7 +81,7 @@ The content of the lslidar_cx.launch file is as follows, and the meaning of each
 
   <arg name="packet_rate" default="1695.0"/>           #The number of data packets sent by the lidar per second. This parameter is useful when reading pcap packets
 
-  <node pkg="lslidar_cx_driver" type="lslidar_cx_driver_node" name="lslidar_driver_node" output="screen">
+  <node pkg="lslidar_c16_driver" type="lslidar_c16_driver_node" name="lslidar_driver_node" output="screen">
     <!--param name="pcap" value="$(find lslidar_driver)/pcap/123.pcap" /-->   #Uncomment to read the data from the pcap file, and add the comment to read the data from the lidar
     <param name="use_time_service" value="$(arg use_time_service)"/>
     <param name="packet_rate" value="$(arg packet_rate)"/>
@@ -104,7 +104,7 @@ The content of the lslidar_cx.launch file is as follows, and the meaning of each
     <param name="coordinate_opt" value="false"/>    # Default false. The zero degree angle of the lidar corresponds to the direction of the point cloud
   </node>
 
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lslidar_cx_driver)/rviz/lslidar.rviz"/>			   # If it is not necessary to start rivz,please delete this line
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lslidar_c16_driver)/rviz/lslidar.rviz"/>			   # If it is not necessary to start rivz,please delete this line
  
  <!--node pkg="tf" type="static_transform_publisher" name="laser_link_to_world" args="0 0 0 0 0 0 world laser_link 100" /-->					# tf coordinate conversion
   
@@ -133,13 +133,13 @@ The content of the lslidar_cx.launch file is as follows, and the meaning of each
 
 - ### Offline pcap mode:
 
-  - Copy the recorded pcap file to the lslidar_cx_driver/pcap folder
+  - Copy the recorded pcap file to the lslidar_c16_driver/pcap folder
   
   - Modify the following parameters of the launch file
   
   ~~~shell
   // uncomment
-      <param name="pcap" value="$(find lslidar_cx_driver)/pcap/xxx.pcap" /> 
+      <param name="pcap" value="$(find lslidar_c16_driver)/pcap/xxx.pcap" /> 
   ~~~
 
 - ### pcl point cloud type:

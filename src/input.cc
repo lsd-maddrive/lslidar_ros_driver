@@ -93,7 +93,7 @@ namespace lslidar_driver {
     }
 
 /** @brief Get one lslidar packet. */
-    int InputSocket::getPacket(lslidar_cx_driver::LslidarPacketPtr &pkt) {
+    int InputSocket::getPacket(lslidar_c16_driver::LslidarPacketPtr &pkt) {
         struct pollfd fds[1];
         fds[0].fd = sockfd_;
         fds[0].events = POLLIN; //有数据可读
@@ -216,7 +216,7 @@ namespace lslidar_driver {
     }
 
 /** @brief Get one lslidar packet. */
-    int InputPCAP::getPacket(lslidar_cx_driver::LslidarPacketPtr &pkt) {
+    int InputPCAP::getPacket(lslidar_c16_driver::LslidarPacketPtr &pkt) {
         struct pcap_pkthdr *header;
         const u_char *pkt_data;
 

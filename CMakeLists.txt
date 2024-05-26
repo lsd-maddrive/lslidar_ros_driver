@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(lslidar_cx_driver)
+project(lslidar_c16_driver)
 
 set(CMAKE_CXX_STANDARD 14)
 add_compile_options(-std=c++11)
@@ -83,38 +83,38 @@ target_link_libraries(lslidar_cx_input
 		${catkin_LIBRARIES}
 		${libpcap_LIBRARIES})
 
-add_library(lslidar_cx_driver src/lslidar_driver.cpp)
-add_dependencies(lslidar_cx_driver
+add_library(lslidar_c16_driver src/lslidar_driver.cpp)
+add_dependencies(lslidar_c16_driver
 		${${PROJECT_NAME}_EXPORTED_TARGETS}
 		${catkin_EXPORTED_TARGETS}
 		${PROJECT_NAME}_generate_messages_cpp
 		)
-target_link_libraries(lslidar_cx_driver
+target_link_libraries(lslidar_c16_driver
 		lslidar_cx_input
 		${catkin_LIBRARIES})
 
 # build the nodelet version
-add_library(lslidar_cx_driver_nodelet src/lslidar_driver_nodelet.cc src/lslidar_driver.cpp)
-target_link_libraries(lslidar_cx_driver_nodelet
+add_library(lslidar_c16_driver_nodelet src/lslidar_driver_nodelet.cc src/lslidar_driver.cpp)
+target_link_libraries(lslidar_c16_driver_nodelet
 		lslidar_cx_input
 		${catkin_LIBRARIES}
 		)
 
-add_executable(lslidar_cx_driver_node src/lslidar_driver_node.cpp)
+add_executable(lslidar_c16_driver_node src/lslidar_driver_node.cpp)
 
 if(catkin_EXPORTED_TARGETS)
 	add_dependencies(lslidar_cx_input ${catkin_EXPORTED_TARGETS})
 endif()
 
-target_link_libraries(lslidar_cx_driver_node
-		lslidar_cx_driver
+target_link_libraries(lslidar_c16_driver_node
+		lslidar_c16_driver
 		lslidar_cx_input
 		${catkin_LIBRARIES}
 		${libpcap_LIBRARIES}
 		)
 
 
-install(TARGETS lslidar_cx_input lslidar_cx_driver lslidar_cx_driver_nodelet lslidar_cx_driver_node
+install(TARGETS lslidar_cx_input lslidar_c16_driver lslidar_c16_driver_nodelet lslidar_c16_driver_node
 		ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 		LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 		RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

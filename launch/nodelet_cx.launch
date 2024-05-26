@@ -10,7 +10,7 @@
     <!-- nodelet manager -->
 
   <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" output="screen" />
-  <node pkg="nodelet" type="nodelet" name="lslidar_cx_driver_nodelet"
+  <node pkg="nodelet" type="nodelet" name="lslidar_c16_driver_nodelet"
         args="load lslidar_driver/DriverNodelet nodelet_manager" output="screen" respawn="true">
     <param name="packet_rate" value="$(arg packet_rate)"/>
     <param name="device_ip" value="$(arg device_ip)" />

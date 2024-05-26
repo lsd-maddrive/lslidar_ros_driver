@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>lslidar_cx_driver</name>
+  <name>lslidar_c16_driver</name>
   <version>4.3.1</version>
 
   <maintainer email="lslidar@sina.com">lslidar</maintainer>

@@ -36,7 +36,7 @@
 #include <sys/file.h>
 #include <signal.h>
 #include <sensor_msgs/TimeReference.h>
-#include "lslidar_cx_driver/LslidarPacket.h"
+#include "lslidar_c16_driver/LslidarPacket.h"
 
 
 namespace lslidar_driver {
@@ -59,7 +59,7 @@ namespace lslidar_driver {
         virtual ~Input() {
         }
 
-        virtual int getPacket(lslidar_cx_driver::LslidarPacketPtr &pkt) = 0;
+        virtual int getPacket(lslidar_c16_driver::LslidarPacketPtr &pkt) = 0;
 
         ros::Publisher packets_status_pub;
         
@@ -82,7 +82,7 @@ namespace lslidar_driver {
 
         virtual ~InputSocket();
 
-        virtual int getPacket(lslidar_cx_driver::LslidarPacketPtr &pkt);
+        virtual int getPacket(lslidar_c16_driver::LslidarPacketPtr &pkt);
 
     private:
         int sockfd_;
@@ -101,7 +101,7 @@ namespace lslidar_driver {
 
         virtual ~InputPCAP();
 
-        virtual int getPacket(lslidar_cx_driver::LslidarPacketPtr &pkt);
+        virtual int getPacket(lslidar_c16_driver::LslidarPacketPtr &pkt);
 
     private:
         ros::Rate packet_rate_;

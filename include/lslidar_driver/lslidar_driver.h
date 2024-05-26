@@ -42,15 +42,15 @@ class Request;
 #include <memory>
 #include <mutex>
 #include <algorithm>
-#include "lslidar_cx_driver/lslidar_control.h"
-#include "lslidar_cx_driver/time_service.h"
-#include "lslidar_cx_driver/motor_speed.h"
-#include "lslidar_cx_driver/motor_control.h"
-#include "lslidar_cx_driver/remove_control.h"
-#include "lslidar_cx_driver/data_port.h"
-#include "lslidar_cx_driver/dev_port.h"
-#include "lslidar_cx_driver/data_ip.h"
-#include "lslidar_cx_driver/destination_ip.h"
+#include "lslidar_c16_driver/lslidar_control.h"
+#include "lslidar_c16_driver/time_service.h"
+#include "lslidar_c16_driver/motor_speed.h"
+#include "lslidar_c16_driver/motor_control.h"
+#include "lslidar_c16_driver/remove_control.h"
+#include "lslidar_c16_driver/data_port.h"
+#include "lslidar_c16_driver/dev_port.h"
+#include "lslidar_c16_driver/data_ip.h"
+#include "lslidar_c16_driver/destination_ip.h"
 
 
 namespace lslidar_driver {
@@ -200,7 +200,7 @@ namespace lslidar_driver {
 
         ~LslidarDriver() {}
 
-        bool checkPacketValidity(lslidar_cx_driver::LslidarPacketPtr &packet);
+        bool checkPacketValidity(lslidar_c16_driver::LslidarPacketPtr &packet);
 
         //check if a point is in the required range
         // bool isPointInRange(const double &distance);
@@ -219,39 +219,39 @@ namespace lslidar_driver {
 
         void publishScan();
 
-        bool powerOn(lslidar_cx_driver::lslidar_control::Request &req,
-                     lslidar_cx_driver::lslidar_control::Response &res);
+        bool powerOn(lslidar_c16_driver::lslidar_control::Request &req,
+                     lslidar_c16_driver::lslidar_control::Response &res);
 
-        bool motorControl(lslidar_cx_driver::motor_control::Request &req,
-                          lslidar_cx_driver::motor_control::Response &res);
+        bool motorControl(lslidar_c16_driver::motor_control::Request &req,
+                          lslidar_c16_driver::motor_control::Response &res);
 
-        bool removeControl(lslidar_cx_driver::remove_control::Request &req,
-                          lslidar_cx_driver::remove_control::Response &res);
+        bool removeControl(lslidar_c16_driver::remove_control::Request &req,
+                          lslidar_c16_driver::remove_control::Response &res);
 
-        bool motorSpeed(lslidar_cx_driver::motor_speed::Request &req,
-                        lslidar_cx_driver::motor_speed::Response &res);
+        bool motorSpeed(lslidar_c16_driver::motor_speed::Request &req,
+                        lslidar_c16_driver::motor_speed::Response &res);
 
-        bool timeService(lslidar_cx_driver::time_service::Request &req,
-                         lslidar_cx_driver::time_service::Response &res);
+        bool timeService(lslidar_c16_driver::time_service::Request &req,
+                         lslidar_c16_driver::time_service::Response &res);
 
-        bool setDataPort(lslidar_cx_driver::data_port::Request &req,
-                         lslidar_cx_driver::data_port::Response &res);
+        bool setDataPort(lslidar_c16_driver::data_port::Request &req,
+                         lslidar_c16_driver::data_port::Response &res);
 
-        bool setDevPort(lslidar_cx_driver::dev_port::Request &req,
-                        lslidar_cx_driver::dev_port::Response &res);
+        bool setDevPort(lslidar_c16_driver::dev_port::Request &req,
+                        lslidar_c16_driver::dev_port::Response &res);
 
-        bool setDataIp(lslidar_cx_driver::data_ip::Request &req,
-                       lslidar_cx_driver::data_ip::Response &res);
+        bool setDataIp(lslidar_c16_driver::data_ip::Request &req,
+                       lslidar_c16_driver::data_ip::Response &res);
 
-        bool setDestinationIp(lslidar_cx_driver::destination_ip::Request &req,
-                              lslidar_cx_driver::destination_ip::Response &res);
+        bool setDestinationIp(lslidar_c16_driver::destination_ip::Request &req,
+                              lslidar_c16_driver::destination_ip::Response &res);
 
         static void setPacketHeader(unsigned char *config_data);
 
         bool sendPacketTolidar(unsigned char *config_data) const;
 
         //void decodePacket(const RawPacket* &packet);
-        void decodePacket(lslidar_cx_driver::LslidarPacketPtr &packet);
+        void decodePacket(lslidar_c16_driver::LslidarPacketPtr &packet);
 
         bool poll();
 
@@ -384,7 +384,7 @@ POINT_CLOUD_REGISTER_POINT_STRUCT(lslidar_driver::PointXYZIRT,
 #endif
 /*
 bool LslidarDriver::determineLidarType(){
-        lslidar_cx_driver::LslidarPacketPtr pkt(new lslidar_cx_driver::LslidarPacket);
+        lslidar_c16_driver::LslidarPacketPtr pkt(new lslidar_c16_driver::LslidarPacket);
         // Since the rslidar delivers data at a very high rate, keep
         // reading and publishing scans as fast as possible.
         while (true) {
