@@ -133,7 +133,7 @@ namespace lslidar_ch_driver {
 
     bool LslidarChDriver::polling() {
         // Allocate a new shared pointer for zero-copy sharing with other nodelets.
-        lslidar_msgs::LslidarChPacketPtr packet(new lslidar_msgs::LslidarChPacket());
+        lslidar_ls180s2_msgs::LslidarChPacketPtr packet(new lslidar_ls180s2_msgs::LslidarChPacket());
 
         // Since the lslidar delivers data at a very high rate, keep
         // reading and publishing scans as fast as possible.
@@ -150,7 +150,7 @@ namespace lslidar_ch_driver {
         if (use_time_service) {
             // it is already the msop msg
             // use the first packets
-            lslidar_msgs::LslidarChPacket pkt = *packet;
+            lslidar_ls180s2_msgs::LslidarChPacket pkt = *packet;
             if (0xff == pkt.data[1194]) {    //ptp授时
                 uint64_t timestamp_s = (pkt.data[1195] * 0 + (pkt.data[1196] << 24) +
                                         (pkt.data[1197] << 16) + (pkt.data[1198] << 8) + pkt.data[1199] * pow(2, 0));
@@ -202,7 +202,7 @@ namespace lslidar_ch_driver {
     }
 
     void LslidarChDriver::difopPoll() {
-        lslidar_msgs::LslidarChPacketPtr difop_packet(new lslidar_msgs::LslidarChPacket());
+        lslidar_ls180s2_msgs::LslidarChPacketPtr difop_packet(new lslidar_ls180s2_msgs::LslidarChPacket());
         // reading and publishing scans as fast as possible.
         while (ros::ok()) {
             // keep reading
@@ -340,7 +340,7 @@ namespace lslidar_ch_driver {
         return 0;
     }
 
-    void LslidarChDriver::lslidarChPacketProcess(const lslidar_msgs::LslidarChPacketPtr &msg) {
+    void LslidarChDriver::lslidarChPacketProcess(const lslidar_ls180s2_msgs::LslidarChPacketPtr &msg) {
         struct Firing lidardata{};
         // Convert the msg to the raw packet type.
         packet_timeStamp = msg->header.stamp;
@@ -584,8 +584,8 @@ namespace lslidar_ch_driver {
         return true;
     }
 
-    bool LslidarChDriver::frameRate(lslidar_msgs::frame_rate::Request &req,
-                                   lslidar_msgs::frame_rate::Response &res) {
+    bool LslidarChDriver::frameRate(lslidar_ls180s2_msgs::frame_rate::Request &req,
+                                   lslidar_ls180s2_msgs::frame_rate::Response &res) {
         if (!is_get_difop_) {
             res.result = 0;
             std::cout << "\033[1m\033[33m" << "Can not get dev packet! Set failed!"<< "\033[0m" << std::endl;
@@ -624,8 +624,8 @@ namespace lslidar_ch_driver {
         return true;
     }
 
-    bool LslidarChDriver::setDataIp(lslidar_msgs::data_ip::Request &req,
-                                  lslidar_msgs::data_ip::Response &res) {
+    bool LslidarChDriver::setDataIp(lslidar_ls180s2_msgs::data_ip::Request &req,
+                                  lslidar_ls180s2_msgs::data_ip::Response &res) {
         std::regex ipv4(
                 "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b");
         if (!regex_match(req.data_ip, ipv4)) {
@@ -676,8 +676,8 @@ namespace lslidar_ch_driver {
         return true;
     }
 
-    bool LslidarChDriver::setDestinationIp(lslidar_msgs::destination_ip::Request &req,
-                                         lslidar_msgs::destination_ip::Response &res) {
+    bool LslidarChDriver::setDestinationIp(lslidar_ls180s2_msgs::destination_ip::Request &req,
+                                         lslidar_ls180s2_msgs::destination_ip::Response &res) {
         std::regex ipv4(
                 "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b");
         if (!regex_match(req.destination_ip, ipv4)) {
@@ -726,8 +726,8 @@ namespace lslidar_ch_driver {
         return true;
     }
 
-    bool LslidarChDriver::setDataPort(lslidar_msgs::data_port::Request &req,
-                                    lslidar_msgs::data_port::Response &res) {
+    bool LslidarChDriver::setDataPort(lslidar_ls180s2_msgs::data_port::Request &req,
+                                    lslidar_ls180s2_msgs::data_port::Response &res) {
         if (!is_get_difop_) {
             res.result = 0;
             std::cout << "\033[1m\033[33m" << "Can not get dev packet! Set failed!"<< "\033[0m" << std::endl;
@@ -762,8 +762,8 @@ namespace lslidar_ch_driver {
         return true;
     }
 
-    bool LslidarChDriver::setDevPort(lslidar_msgs::dev_port::Request &req,
-                                   lslidar_msgs::dev_port::Response &res) {
+    bool LslidarChDriver::setDevPort(lslidar_ls180s2_msgs::dev_port::Request &req,
+                                   lslidar_ls180s2_msgs::dev_port::Response &res) {
         if (!is_get_difop_) {
             res.result = 0;
             std::cout << "\033[1m\033[33m" << "Can not get dev packet! Set failed!"<< "\033[0m" << std::endl;
@@ -799,4 +799,4 @@ namespace lslidar_ch_driver {
         return true;
     }
 
-} // namespace lslidar_driver
+} // namespace lslidar_ls180s2_driver

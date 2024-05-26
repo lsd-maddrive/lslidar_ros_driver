@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(lslidar_msgs)
+project(lslidar_ls180s2_msgs)
 
 find_package(catkin REQUIRED COMPONENTS
   message_generation

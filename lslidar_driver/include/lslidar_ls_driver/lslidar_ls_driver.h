@@ -45,17 +45,17 @@
 #include <chrono>
 //#include <tf/transform_listener.h>
 #include <std_msgs/Int64.h>
-#include <lslidar_msgs/LslidarChLayer.h>
-#include <lslidar_msgs/LslidarChPacket.h>
-#include <lslidar_msgs/LslidarChPoint.h>
-#include <lslidar_msgs/LslidarChScan.h>
-#include <lslidar_msgs/LslidarChSweep.h>
-#include <lslidar_msgs/LslidarChScanUnified.h>
-#include <lslidar_msgs/frame_rate.h>
-#include <lslidar_msgs/data_port.h>
-#include <lslidar_msgs/dev_port.h>
-#include <lslidar_msgs/data_ip.h>
-#include <lslidar_msgs/destination_ip.h>
+#include <lslidar_ls180s2_msgs/LslidarChLayer.h>
+#include <lslidar_ls180s2_msgs/LslidarChPacket.h>
+#include <lslidar_ls180s2_msgs/LslidarChPoint.h>
+#include <lslidar_ls180s2_msgs/LslidarChScan.h>
+#include <lslidar_ls180s2_msgs/LslidarChSweep.h>
+#include <lslidar_ls180s2_msgs/LslidarChScanUnified.h>
+#include <lslidar_ls180s2_msgs/frame_rate.h>
+#include <lslidar_ls180s2_msgs/data_port.h>
+#include <lslidar_ls180s2_msgs/dev_port.h>
+#include <lslidar_ls180s2_msgs/data_ip.h>
+#include <lslidar_ls180s2_msgs/destination_ip.h>
 #include <deque>
 #include <mutex>
 #include "lslidar_ls_driver/ThreadPool.h"
@@ -119,7 +119,7 @@ namespace lslidar_ch_driver {
 
         bool sendPacketTolidar(unsigned char *config_data) const;
 
-        void lslidarChPacketProcess(const lslidar_msgs::LslidarChPacketPtr &msg);
+        void lslidarChPacketProcess(const lslidar_ls180s2_msgs::LslidarChPacketPtr &msg);
 
         typedef boost::shared_ptr<LslidarChDriver> LslidarChDriverPtr;
         typedef boost::shared_ptr<const LslidarChDriver> LslidarChDriverConstPtr;
@@ -129,20 +129,20 @@ namespace lslidar_ch_driver {
 
         bool createRosIO();
 
-        bool frameRate(lslidar_msgs::frame_rate::Request &req,
-                        lslidar_msgs::frame_rate::Response &res);
+        bool frameRate(lslidar_ls180s2_msgs::frame_rate::Request &req,
+                        lslidar_ls180s2_msgs::frame_rate::Response &res);
 
-        bool setDataIp(lslidar_msgs::data_ip::Request &req,
-                         lslidar_msgs::data_ip::Response &res);
+        bool setDataIp(lslidar_ls180s2_msgs::data_ip::Request &req,
+                         lslidar_ls180s2_msgs::data_ip::Response &res);
 
-        bool setDestinationIp(lslidar_msgs::destination_ip::Request &req,
-                        lslidar_msgs::destination_ip::Response &res);
+        bool setDestinationIp(lslidar_ls180s2_msgs::destination_ip::Request &req,
+                        lslidar_ls180s2_msgs::destination_ip::Response &res);
 
-        bool setDataPort(lslidar_msgs::data_port::Request &req,
-                          lslidar_msgs::data_port::Response &res);
+        bool setDataPort(lslidar_ls180s2_msgs::data_port::Request &req,
+                          lslidar_ls180s2_msgs::data_port::Response &res);
 
-        bool setDevPort(lslidar_msgs::dev_port::Request &req,
-                         lslidar_msgs::dev_port::Response &res);
+        bool setDevPort(lslidar_ls180s2_msgs::dev_port::Request &req,
+                         lslidar_ls180s2_msgs::dev_port::Response &res);
 
         //socket Parameters
         int msop_udp_port{};
@@ -229,7 +229,7 @@ namespace lslidar_ch_driver {
 
 //    typedef pcl::PointCloud<VPoint> VPointCloud;
 
-} // namespace lslidar_driver
+} // namespace lslidar_ls180s2_driver
 
 POINT_CLOUD_REGISTER_POINT_STRUCT(lslidar_ch_driver::PointXYZIRT,
                                   (float, x, x)(float, y, y)(float, z, z)

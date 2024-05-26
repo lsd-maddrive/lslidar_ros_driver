@@ -52,13 +52,13 @@ source devel/setup.bash
 run with single lidar:
 
 ~~~bash
-roslaunch lslidar_driver lslidar_ls1550.launch
+roslaunch lslidar_ls180s2_driver lslidar_ls1550.launch
 ~~~
 
 run with double lidar:
 
 ~~~bash
-roslaunch lslidar_driver lslidar_ls1550_double.launch
+roslaunch lslidar_ls180s2_driver lslidar_ls1550_double.launch
 ~~~
 
 ## 4. Introduction to parameters
@@ -73,7 +73,7 @@ The content of the lslidar_ls128.launch file is as follows, and the meaning of e
   <arg name="use_time_service" default="false" />  # Whether use time service
   <arg name="packet_rate" default="15000.0"/>     #PCAP packets per second, used for offline parsing of PCAP packets
 
-    <node pkg="lslidar_driver" type="lslidar_driver_node" name="lslidar_driver_node" output="screen">
+    <node pkg="lslidar_ls180s2_driver" type="lslidar_ls180s2_driver_node" name="lslidar_ls180s2_driver_node" output="screen">
 <!--param name="pcap" value="$(find lslidar_ls128_driver)/pcap/xxx.pcap"/-->
 #Uncomment to read the data from the pcap file, and add the comment to read the data from the lidar
     <param name="lidar_ip" value="$(arg device_ip)"/>
@@ -93,7 +93,7 @@ The content of the lslidar_ls128.launch file is as follows, and the meaning of e
     
   </node>
 
-  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find lslidar_driver)/launch/lslidar_ls.rviz" output="screen"/-->
+  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find lslidar_ls180s2_driver)/launch/lslidar_ls.rviz" output="screen"/-->
 
 </launch>
 ~~~

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(lslidar_driver)
+project(lslidar_ls180s2_driver)
 
 add_definitions(-std=c++14)
 set(libpcap_LIBRARIES -lpcap)
@@ -20,7 +20,7 @@ find_package(catkin REQUIRED COMPONENTS
         pcl_ros
         pcl_conversions
         nodelet
-        lslidar_msgs
+        lslidar_ls180s2_msgs
         )
 
 #find_package(Boost REQUIRED)
@@ -30,7 +30,7 @@ catkin_package(
         #  LIBRARIES lslidar_ls_driver
         CATKIN_DEPENDS
         roscpp  nodelet
-        lslidar_msgs  pcl_ros pcl_conversions
+        lslidar_ls180s2_msgs  pcl_ros pcl_conversions
         DEPENDS
         #    Boost
 )
@@ -70,15 +70,15 @@ add_dependencies(lslidar_128_driver
         )
 
 # Leishen ch lidar nodelet
-add_executable(lslidar_driver_node
+add_executable(lslidar_ls180s2_driver_node
         src/lslidar_ls_driver_node.cc
         )
 
-target_link_libraries(lslidar_driver_node
+target_link_libraries(lslidar_ls180s2_driver_node
         lslidar_128_driver
         ${catkin_LIBRARIES}
         )
-add_dependencies(lslidar_driver_node
+add_dependencies(lslidar_ls180s2_driver_node
         ${${PROJECT_NAME}_EXPORTED_TARGETS}
         ${catkin_EXPORTED_TARGETS}
         )
@@ -89,7 +89,7 @@ endif ()
 
 
 # install options
-install(TARGETS lslidar_input_ls128 lslidar_128_driver lslidar_driver_node
+install(TARGETS lslidar_input_ls128 lslidar_128_driver lslidar_ls180s2_driver_node
         ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
         LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
         RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
