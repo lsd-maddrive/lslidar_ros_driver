@@ -23,7 +23,7 @@
 #include <pcap.h>
 #include <netinet/in.h>
 #include <ros/ros.h>
-#include <lslidar_msgs/LslidarChPacket.h>
+#include <lslidar_ch64w_msgs/LslidarChPacket.h>
 #include <string>
 #include <sstream>
 #include <sys/socket.h>
@@ -56,7 +56,7 @@ namespace lslidar_ch_driver {
         virtual ~Input() {
         }
 
-        virtual int getPacket(lslidar_msgs::LslidarChPacketPtr &packet) = 0;
+        virtual int getPacket(lslidar_ch64w_msgs::LslidarChPacketPtr &packet) = 0;
 
 
 
@@ -77,7 +77,7 @@ namespace lslidar_ch_driver {
 
         virtual ~InputSocket();
 
-        virtual int getPacket(lslidar_msgs::LslidarChPacketPtr &packet);
+        virtual int getPacket(lslidar_ch64w_msgs::LslidarChPacketPtr &packet);
 
 
     private:
@@ -93,7 +93,7 @@ namespace lslidar_ch_driver {
 
         virtual ~InputPCAP();
 
-        virtual int getPacket(lslidar_msgs::LslidarChPacketPtr &packet);
+        virtual int getPacket(lslidar_ch64w_msgs::LslidarChPacketPtr &packet);
     private:
         ros::Rate packet_rate_;
         std::string filename_;

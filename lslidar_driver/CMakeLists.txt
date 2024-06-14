@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(lslidar_driver)
+project(lslidar_ch64w_driver)
 
 
 add_compile_options(-std=c++14)
@@ -11,7 +11,7 @@ set(libpcap_LIBRARIES -lpcap)
 find_package(catkin REQUIRED COMPONENTS
         roscpp
         nodelet
-        lslidar_msgs
+        lslidar_ch64w_msgs
         pluginlib
         sensor_msgs
         pcl_ros
@@ -32,7 +32,7 @@ catkin_package(
         #  LIBRARIES lslidar_ch_driver
         CATKIN_DEPENDS
         roscpp  nodelet
-        lslidar_msgs
+        lslidar_ch64w_msgs
         sensor_msgs
         pluginlib
         pcl_ros pcl_conversions

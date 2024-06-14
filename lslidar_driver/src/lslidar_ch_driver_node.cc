@@ -26,7 +26,7 @@ static void my_handler(int sig)
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "lslidar_driver_node");
+    ros::init(argc, argv, "lslidar_ch64w_driver_node");
     ros::NodeHandle node;
     ros::NodeHandle private_nh("~");
 

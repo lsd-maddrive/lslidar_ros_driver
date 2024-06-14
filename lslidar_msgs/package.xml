@@ -1,6 +1,6 @@
 <package>
 
-  <name>lslidar_msgs</name>
+  <name>lslidar_ch64w_msgs</name>
   <version>1.0.0</version>
   <description>
     ROS message definitions for Leishen Ch LIDARs.

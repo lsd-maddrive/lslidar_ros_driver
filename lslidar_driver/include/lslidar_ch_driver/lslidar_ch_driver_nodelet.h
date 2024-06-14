@@ -30,4 +30,4 @@ private:
   LslidarChDriverPtr lslidar_ch_driver; ///< driver implementation class
 };
 
-} // namespace lslidar_driver
+} // namespace lslidar_ch64w_driver

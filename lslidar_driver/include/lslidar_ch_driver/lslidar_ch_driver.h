@@ -29,14 +29,14 @@
 #include <memory>
 #include <ros/ros.h>
 #include <mutex>
-#include <lslidar_msgs/LslidarChPacket.h>
-#include <lslidar_msgs/LslidarChScan.h>
+#include <lslidar_ch64w_msgs/LslidarChPacket.h>
+#include <lslidar_ch64w_msgs/LslidarChScan.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <sensor_msgs/LaserScan.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h>
-#include "lslidar_msgs/lslidar_control.h"
+#include "lslidar_ch64w_msgs/lslidar_control.h"
 #include "input.h"
 
 namespace lslidar_ch_driver {
@@ -124,7 +124,7 @@ namespace lslidar_ch_driver {
         ~LslidarChDriver();
 
         bool initialize();
-        bool lslidarControl(lslidar_msgs::lslidar_control::Request &req,lslidar_msgs::lslidar_control::Response& res);
+        bool lslidarControl(lslidar_ch64w_msgs::lslidar_control::Request &req,lslidar_ch64w_msgs::lslidar_control::Response& res);
         bool SendPacketTolidar(bool power_switch);
         void publishLaserScan();
         void publishPointCloud();
@@ -141,7 +141,7 @@ namespace lslidar_ch_driver {
             return (distance >= min_range && distance <= max_range);
         }
 
-        //void getFPGA_GPSTimeStamp(lslidar_msgs::LslidarChPacketPtr &packet);
+        //void getFPGA_GPSTimeStamp(lslidar_ch64w_msgs::LslidarChPacketPtr &packet);
 
         typedef boost::shared_ptr<LslidarChDriver> LslidarChDriverPtr;
         typedef boost::shared_ptr<const LslidarChDriver> LslidarChDriverConstPtr;
@@ -208,8 +208,8 @@ namespace lslidar_ch_driver {
         ros::Publisher laserscan_pub;
         ros::ServiceServer lslidar_control;
 
-       // lslidar_msgs::LslidarChScanPtr sweep_data;
-       // lslidar_msgs::LslidarChScanPtr sweep_data_bac;
+       // lslidar_ch64w_msgs::LslidarChScanPtr sweep_data;
+       // lslidar_ch64w_msgs::LslidarChScanPtr sweep_data_bac;
 
 
         unsigned char difop_data[1206] = {0};
@@ -282,7 +282,7 @@ namespace lslidar_ch_driver {
     typedef PointXYZIRT VPoint;
     typedef pcl::PointCloud<VPoint> VPointCloud;
 
-} // namespace lslidar_driver
+} // namespace lslidar_ch64w_driver
 
 POINT_CLOUD_REGISTER_POINT_STRUCT(lslidar_ch_driver::PointXYZIRT,
                                   (float, x, x)(float, y, y)(float, z, z)

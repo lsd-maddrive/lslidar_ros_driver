@@ -72,7 +72,7 @@ void LslidarChDriverNodelet::devicePoll()
   running = false;
 }
 
-} // namespace lslidar_driver
+} // namespace lslidar_ch64w_driver
 
 // Register this plugin with pluginlib.  Names must match nodelet_lslidar.xml.
 //

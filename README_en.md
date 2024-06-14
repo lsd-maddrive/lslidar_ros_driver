@@ -51,13 +51,13 @@ source devel/setup.bash
 run with single  lidar:
 
 ~~~bash
-roslaunch lslidar_driver lslidar_ch128x1.launch
+roslaunch lslidar_ch64w_driver lslidar_ch128x1.launch
 ~~~
 
 run with double  lidar:
 
 ~~~bash
-roslaunch lslidar_driver lslidar_double.launch
+roslaunch lslidar_ch64w_driver lslidar_double.launch
 ~~~
 
 
@@ -73,8 +73,8 @@ roslaunch lslidar_driver lslidar_double.launch
     <arg name="pcl_type" default="false"/>        #pointcloud type，false: xyzirt,true:xyzi
     <arg name="use_time_service" default="false" />     # Whether gps time synchronization
 
-  <node pkg="lslidar_driver" type="lslidar_ch_driver_node" name="lslidar_driver_node" output="screen">
-    <!--param name="pcap" value="$(find lslidar_driver)/pcap/tt.pcap"/-->     #Uncomment to read the data from the pcap file, and add the comment to read the data from the lidar
+  <node pkg="lslidar_ch64w_driver" type="lslidar_ch_driver_node" name="lslidar_ch64w_driver_node" output="screen">
+    <!--param name="pcap" value="$(find lslidar_ch64w_driver)/pcap/tt.pcap"/-->     #Uncomment to read the data from the pcap file, and add the comment to read the data from the lidar
     <param name="lidar_ip" value="$(arg device_ip)"/>
     <param name="lidar_type" value="$(arg lidar_type)"/>
     <param name="msop_port" value="$(arg msop_port)" />
@@ -123,7 +123,7 @@ roslaunch lslidar_driver lslidar_double.launch
 
   ~~~xml
   // uncomment
-      <param name="pcap" value="$(find lslidar_driver)/pcap/tt.pcap"/>   
+      <param name="pcap" value="$(find lslidar_ch64w_driver)/pcap/tt.pcap"/>   
   #Uncomment to read the data from the pcap file, and add the comment to read the data from the lidar                 
   ~~~
 
@@ -139,7 +139,7 @@ roslaunch lslidar_driver lslidar_double.launch
 
 - The default false is the custom point cloud type, which references the definition in the file of
 
-  lslidar_driver/include/lslidar_driver.h
+  lslidar_ch64w_driver/include/lslidar_ch64w_driver.h
 
   Change it to true, which is the own type of pcl:
 

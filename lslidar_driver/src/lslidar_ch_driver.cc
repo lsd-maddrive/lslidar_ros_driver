@@ -50,7 +50,7 @@ namespace lslidar_ch_driver {
             sin_list[j] = sin(j * 0.01 * DEG_TO_RAD);
             cos_list[j] = cos(j * 0.01 * DEG_TO_RAD);
         }
-        ROS_INFO("***********************CHX1 ROS1 DRIVER VERSION: %s ***********************", lslidar_driver_VERSION);
+        ROS_INFO("***********************CHX1 ROS1 DRIVER VERSION: %s ***********************", lslidar_ch64w_driver_VERSION);
         return;
     }
 
@@ -271,11 +271,11 @@ namespace lslidar_ch_driver {
         return true;
     }
 
-    bool LslidarChDriver::lslidarControl(lslidar_msgs::lslidar_control::Request &req,
-                                         lslidar_msgs::lslidar_control::Response &res) {
+    bool LslidarChDriver::lslidarControl(lslidar_ch64w_msgs::lslidar_control::Request &req,
+                                         lslidar_ch64w_msgs::lslidar_control::Response &res) {
         ROS_WARN("--------------------------");
         // sleep(1);
-        lslidar_msgs::LslidarChPacketPtr packet0(new lslidar_msgs::LslidarChPacket);
+        lslidar_ch64w_msgs::LslidarChPacketPtr packet0(new lslidar_ch64w_msgs::LslidarChPacket);
         bool ret_val = false;
 
         packet0->data[0] = 0x00;
@@ -671,8 +671,8 @@ namespace lslidar_ch_driver {
 
     bool LslidarChDriver::polling() {
         // Allocate a new shared pointer for zero-copy sharing with other nodelets.
-        lslidar_msgs::LslidarChPacketPtr packet(
-                new lslidar_msgs::LslidarChPacket());
+        lslidar_ch64w_msgs::LslidarChPacketPtr packet(
+                new lslidar_ch64w_msgs::LslidarChPacket());
 
         int rc = -1;
         // Since the lslidar delivers data at a very high rate, keep
@@ -1142,8 +1142,8 @@ namespace lslidar_ch_driver {
     }
 
     void LslidarChDriver::difopPoll(void) {
-        lslidar_msgs::LslidarChPacketPtr difop_packet(
-                new lslidar_msgs::LslidarChPacket());
+        lslidar_ch64w_msgs::LslidarChPacketPtr difop_packet(
+                new lslidar_ch64w_msgs::LslidarChPacket());
         // reading and publishing scans as fast as possible.
         while (ros::ok()) {
             // keep reading
@@ -1424,7 +1424,7 @@ namespace lslidar_ch_driver {
     }
 
 
-/*    void LslidarChDriver::getFPGA_GPSTimeStamp(lslidar_msgs::LslidarChPacketPtr &packet) {
+/*    void LslidarChDriver::getFPGA_GPSTimeStamp(lslidar_ch64w_msgs::LslidarChPacketPtr &packet) {
         unsigned char head2[] = {packet->data[0], packet->data[1], packet->data[2], packet->data[3]};
 
         if (head2[0] == 0xA5 && head2[1] == 0xFF) {
@@ -1436,4 +1436,4 @@ namespace lslidar_ch_driver {
         }
     }*/
 
-} // namespace lslidar_driver
+} // namespace lslidar_ch64w_driver

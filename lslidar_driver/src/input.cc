@@ -21,7 +21,7 @@
 extern volatile sig_atomic_t flag;
 namespace lslidar_ch_driver {
 
-    //static const size_t ch128x1_packet_size = sizeof(lslidar_msgs::LslidarChPacket().data);
+    //static const size_t ch128x1_packet_size = sizeof(lslidar_ch64w_msgs::LslidarChPacket().data);
 
 ////////////////////////////////////////////////////////////////////////
 // Input base class implementation
@@ -112,7 +112,7 @@ namespace lslidar_ch_driver {
         (void) close(sockfd_);
     }
 
-    int InputSocket::getPacket(lslidar_msgs::LslidarChPacketPtr &packet) {
+    int InputSocket::getPacket(lslidar_ch64w_msgs::LslidarChPacketPtr &packet) {
 
         struct pollfd fds[1];
         fds[0].fd = sockfd_;
@@ -214,7 +214,7 @@ namespace lslidar_ch_driver {
         pcap_close(pcap_);
     }
 
-    int InputPCAP::getPacket(lslidar_msgs::LslidarChPacketPtr &pkt) {
+    int InputPCAP::getPacket(lslidar_ch64w_msgs::LslidarChPacketPtr &pkt) {
         struct pcap_pkthdr *header;
         const u_char *pkt_data;
         while (flag == 1) {
